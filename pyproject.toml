@@ -1,0 +1,67 @@
+[project]
+name = "com-mate-converter"
+version = "0.1.0"
+description = "Convert mate for COM3D2.NPRShader.Plugin to common format of ShaderServant."
+authors = [
+    {name = "silver1145", email = "none"},
+]
+dependencies = [
+    "loguru>=0.7.2",
+    "regex>=2023.12.25",
+    "textual>=0.50.1",
+    "construct>=2.10.68",
+    "py7zr>=0.20.8",
+    "pyperclip>=1.8.2",
+]
+requires-python = "<3.13,>=3.8"
+readme = "README.md"
+license = {text = "MIT"}
+
+[project.scripts]
+cmc = "com_mate_converter.__main__:main"
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pyright]
+pythonVersion = "3.8"
+pythonPlatform = "All"
+typeCheckingMode = "basic"
+
+[tool.ruff]
+line-length = 120
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "UP", "C", "T", "PT", "Q"]
+ignore = ["E402", "C901", "UP037"]
+
+[tool.pytest.ini_options]
+markers = [
+    "finished",
+]
+addopts = "--ignore=tests/performance/"
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "ruff>=0.2.1",
+    "pytest>=8.0.0",
+    "textual-dev>=1.4.0",
+    "construct-typing>=0.6.2",
+    "pyinstaller>=6.4.0",
+]
+i18n = [
+    "babel>=2.14.0",
+]
+
+[tool.pdm.scripts]
+test = "pytest -v -m \"finished\" ./tests/"
+format = { composite = ["ruff check --select I --select F401 --fix ./com_mate_converter/","ruff format ./com_mate_converter/"] }
+babel-extract = "pybabel extract -o messages.pot --project com-mate-converter --version 1.0.0 com_mate_converter/"
+_babel-init = "pybabel init -D com-mate-converter -i messages.pot -d com_mate_converter/locale/ -l {args}"
+babel-init = { composite = ["babel-extract", "_babel-init {args}"] }
+_babel-update = "pybabel update -D com-mate-converter -i messages.pot -d com_mate_converter/locale/"
+babel-update = { composite = ["babel-extract", "_babel-update"] }
+babel-compile = "pybabel compile -D com-mate-converter -d com_mate_converter/locale/"
+pyinstaller-build = "pyinstaller -F com_mate_converter/__main__.py"

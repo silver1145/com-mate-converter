@@ -1,0 +1,122 @@
+Screen {
+    align: center top;
+}
+
+ListItem {
+    height: 1;
+    align: center middle;
+    background: darkslateblue;
+    margin: 0 0;
+}
+
+ListItem.--highlight {
+    height: 1;
+    color: violet;
+    background: #4b0082;
+}
+
+ListView {
+    align: center middle;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 0 0;
+    background: darkslateblue;
+    border: violet;
+}
+
+Button {
+    align: center middle;
+    margin: 0 0;
+}
+
+QuitScreen {
+    align: center middle;
+}
+
+WorkConfirmScreen {
+    align: center middle;
+}
+
+#title {
+    align: left middle;
+}
+
+
+#app-grid {
+    layout: grid;
+    grid-size: 2 1;
+    grid-columns: 1fr 1fr;
+    grid-rows: 1fr 1fr;
+}
+
+#left-pane {
+    height: 100%;
+    layout: vertical;
+    border: round gray;
+    padding: 0;
+}
+
+#right-pane {
+    height: 100%;
+    padding: 0;
+}
+
+#right-top-pane {
+    border: round gray;
+    height: 8;
+    padding: 0;
+}
+
+#right-buttom-pane {
+    border: round gray;
+    padding: 0;
+}
+
+#text-log {
+    height: 99%;
+}
+
+#process-percent {
+    height: 1%;
+}
+
+#menu-process-mode-choice {
+    height: 4;
+}
+
+#pmat-check-mode-choice {
+    height: 5;
+}
+
+#quit-dialog {
+    padding: 0 1;
+    width: 60;
+    height: 15;
+    border: thick $background 80%;
+    background: $surface;
+}
+
+#work-dialog {
+    padding: 0 1;
+    width: 80;
+    height: 20;
+    border: thick $background 80%;
+    background: $surface;
+}
+
+#question {
+    column-span: 2;
+    height: 1fr;
+    width: 1fr;
+    content-align: center middle;
+}
+
+.text-label {
+    row-span: 1;
+    color: white;
+}
+
+.dialog-button {
+    row-span: 1;
+    width: 50%;
+}
