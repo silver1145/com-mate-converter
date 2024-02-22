@@ -75,7 +75,7 @@ class WorkManager:
         self.menu_pass_list = []
         self.pmat_change_list = []
         self.pmat_pass_list = []
-        self.pmat_fname_change_list.clear()
+        self.pmat_fname_change_list = []
 
     def kill_work_thread(self) -> None:
         if self.backup_thread is not None:
