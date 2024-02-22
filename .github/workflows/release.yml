@@ -45,9 +45,7 @@ jobs:
       run: cp -r resources/* dist/ && cp README.md dist/
 
     - name: Pack
-      run: |
-        Get-ChildItem -Path dist/* -Exclude *.whl, *.gz | Compress-Archive -DestinationPath dist/COM_Mate_Converter-${{ steps.version.outputs.VERSION }}.zip
-        mv 
+      run: Get-ChildItem -Path dist/* -Exclude *.whl, *.gz | Compress-Archive -DestinationPath dist/COM_Mate_Converter-${{ steps.version.outputs.VERSION }}.zip
       shell: powershell
 
     - name: Release
