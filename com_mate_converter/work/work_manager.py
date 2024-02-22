@@ -211,7 +211,7 @@ class WorkManager:
                 backup_folder.mkdir(parents=True, exist_ok=True)
             backup_path = backup_folder / "new_file_list.txt"
             if backup_path.exists():
-                with backup_path.open("w+", encoding="utf-8") as f:
+                with backup_path.open("a", encoding="utf-8") as f:
                     for p in self.mate_proc_list:
                         f.write(f"{p.as_posix()}\n")
             else:
@@ -432,7 +432,7 @@ class WorkManager:
                 backup_folder.mkdir(parents=True, exist_ok=True)
             backup_path = backup_folder / "new_file_list.txt"
             if backup_path.exists():
-                with backup_path.open("w+", encoding="utf-8") as f:
+                with backup_path.open("a", encoding="utf-8") as f:
                     for p in self.pmat_fname_change_list:
                         f.write(f"{p.as_posix()}\n")
             else:
