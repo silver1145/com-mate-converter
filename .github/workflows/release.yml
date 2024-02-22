@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release:
+    runs-on: windows-latest
+    permissions:
+      id-token: write
+      contents: write
+    strategy:
+      matrix:
+        python_version:
+          - "3.8"
+          - "3.10"
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup PDM
+      uses: pdm-project/setup-pdm@v4
+      with:
+        python-version: ${{ matrix.python_version }}
+        architecture: "x64"
+        cache: true
+
+    - name: Get Version
+        id: version
+        run: |
+          echo "VERSION=$(pdm show --version)" >> $GITHUB_OUTPUT
+          echo "TAG_VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+          echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+    - name: Sync
+      run: pdm sync && pdm run babel-compile
+
+    - name: Build
+      run: pdm build
+
+    - name: Build Binary
+      run: pdm run pyinstaller-build
+
+    - name: Copy Resources
+      run: cp -r resources/* dist/ && cp README.txt dist/
+
+    - name: Pack
+      run: Get-ChildItem -Path dist\* -Exclude *.whl, *.gz | Compress-Archive -DestinationPath COM_Mate_Converter-${{ steps.version.outputs.VERSION }}.zip
+      shell: powershell
+
+    - name: Release
+        run: gh release upload --clobber ${{ steps.version.outputs.TAG_NAME }} dist/*.zip dist/*.whl
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
