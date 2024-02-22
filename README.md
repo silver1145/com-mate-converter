@@ -10,6 +10,7 @@ Go to [Releases](https://github.com/silver1145/com-mate-converter/releases) and 
    (Only Support Windows 10/11 x64)
 2. Download the `com_mate_converter-{version}-py3-none-any.whl`
    Install Python (**>=3.8**) and use command `pip install com_mate_converter-{...}.whl` to install it.
+   Select a working path, download the `resources/config` directory to the working directory. And use the `cmc` command in this directory to start.
    (Note that Windows only support to Python 3.8)
 
 ## Usage
@@ -31,7 +32,12 @@ Go to [Releases](https://github.com/silver1145/com-mate-converter/releases) and 
      This check will detect the filename and material name of Pmat. If one of them is referenced by mate and the other is not, it means a wrong Pmat.
 3. Start to Process mods.
    Before to do that, **Backups** to **Mate/Menu/Pmat** should be made.
-   **Although the converter provides backup, the mod file will still be <font color="#dd0000">corrupted</font> if you <font color="#dd0000">exit / terminate</font> the program during processing**
+   **Although the converter provides backup**,
+
+   ```json
+   the mod file will still be corrupted if you exit / terminate the program during processing
+   ```
+
    * Processing directory: It can be a mods path or a single mod folder.
      But for some **referenced mods**, processing them separately will cause other Menu that reference these Mate to not work.
 
