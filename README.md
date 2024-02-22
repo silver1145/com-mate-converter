@@ -1,6 +1,6 @@
 # com-mate-converter
 
-A tool for converting NPRShader Mate to common format for [ShaderServer](https://github.com/krypto5863/COM3D2.ShaderServant).
+A tool to convert NPRShader Mate to common format for [ShaderServer](https://github.com/krypto5863/COM3D2.ShaderServant).
 
 ## Install
 
