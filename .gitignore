@@ -1,7 +1,7 @@
 # User Custom
-config/
-backup/
-tests/performance/
+/config/
+/backup/
+/tests/performance/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
