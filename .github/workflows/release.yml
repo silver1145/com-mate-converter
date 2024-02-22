@@ -49,7 +49,7 @@ jobs:
       shell: powershell
 
     - name: Release
-      run: gh release upload --clobber ${{ steps.version.outputs.TAG_NAME }} dist/*.zip dist/*.whl
+      run: gh release upload --clobber ${{ steps.version.outputs.TAG_NAME }} (Get-Item .\dist\* -Include *.whl, *.zip)
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      shell: bash
+      shell: powershell

@@ -202,7 +202,7 @@ class WorkManager:
     def process_mate_finish(self) -> None:
         if CMC_Config.config.backup and self.mate_proc_list:
             if lst := list(self.backup_dict.values()):
-                backup_folder = lst[0]
+                backup_folder = lst[0].parent
             else:
                 backup_folder = Path.cwd() / "backup" / datetime.now().strftime("%Y%m%d_%H%M%S")
                 backup_folder.mkdir(parents=True, exist_ok=True)
