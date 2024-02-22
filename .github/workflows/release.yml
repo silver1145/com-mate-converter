@@ -13,7 +13,6 @@ jobs:
     strategy:
       matrix:
         python_version:
-          - "3.8"
           - "3.10"
     steps:
     - uses: actions/checkout@v4
@@ -42,7 +41,7 @@ jobs:
       run: pdm run pyinstaller-build
 
     - name: Copy Resources
-      run: cp -r resources/* dist/ && cp README.txt dist/
+      run: cp -r resources/* dist/ && cp README.md dist/
 
     - name: Pack
       run: Get-ChildItem -Path dist\* -Exclude *.whl, *.gz | Compress-Archive -DestinationPath COM_Mate_Converter-${{ steps.version.outputs.VERSION }}.zip
