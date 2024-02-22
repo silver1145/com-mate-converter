@@ -58,6 +58,7 @@ class WorkManager:
     menu_pass_list: List[Path]
     pmat_change_list: List[Path]
     pmat_pass_list: List[Path]
+    pmat_fname_change_list: List[Path]
 
     def __init__(self, send_message_callback: Callable[[Message], bool]) -> None:
         self.send_message_callback = send_message_callback
@@ -74,6 +75,7 @@ class WorkManager:
         self.menu_pass_list = []
         self.pmat_change_list = []
         self.pmat_pass_list = []
+        self.pmat_fname_change_list.clear()
 
     def kill_work_thread(self) -> None:
         if self.backup_thread is not None:
@@ -100,6 +102,7 @@ class WorkManager:
         self.menu_pass_list.clear()
         self.pmat_change_list.clear()
         self.pmat_pass_list.clear()
+        self.pmat_fname_change_list.clear()
         self.finish_counter = 0
 
     def counter_add(self) -> None:
@@ -206,10 +209,15 @@ class WorkManager:
             else:
                 backup_folder = Path.cwd() / "backup" / datetime.now().strftime("%Y%m%d_%H%M%S")
                 backup_folder.mkdir(parents=True, exist_ok=True)
-            backup_path = backup_folder / "new_mate_list.txt"
-            with backup_path.open("w", encoding="utf-8") as f:
-                for p in self.mate_proc_list:
-                    f.write(f"{p.as_posix()}\n")
+            backup_path = backup_folder / "new_file_list.txt"
+            if backup_path.exists():
+                with backup_path.open("w+", encoding="utf-8") as f:
+                    for p in self.mate_proc_list:
+                        f.write(f"{p.as_posix()}\n")
+            else:
+                with backup_path.open("w", encoding="utf-8") as f:
+                    for p in self.mate_proc_list:
+                        f.write(f"{p.as_posix()}\n")
         self.send_message_callback(WorkCommand(WorkType.Menu))
 
     @logger.catch
@@ -401,6 +409,7 @@ class WorkManager:
                 with pmat_path.open("wb") as f:
                     f.write(new_data)
                 if pmat_new_filepath is not None:
+                    self.pmat_fname_change_list.append(pmat_path)
                     pmat_path.rename(pmat_new_filepath)
             except:
                 self.pmat_pass_list.append(pmat_path)
@@ -415,6 +424,21 @@ class WorkManager:
             while self.backup_thread.is_alive():
                 time.sleep(0.1)
             logger.debug(_("Backup Pmat Finished"))
+        if CMC_Config.config.backup and self.pmat_fname_change_list:
+            if lst := list(self.backup_dict.values()):
+                backup_folder = lst[0].parent
+            else:
+                backup_folder = Path.cwd() / "backup" / datetime.now().strftime("%Y%m%d_%H%M%S")
+                backup_folder.mkdir(parents=True, exist_ok=True)
+            backup_path = backup_folder / "new_file_list.txt"
+            if backup_path.exists():
+                with backup_path.open("w+", encoding="utf-8") as f:
+                    for p in self.pmat_fname_change_list:
+                        f.write(f"{p.as_posix()}\n")
+            else:
+                with backup_path.open("w", encoding="utf-8") as f:
+                    for p in self.pmat_fname_change_list:
+                        f.write(f"{p.as_posix()}\n")
         self.send_message_callback(WorkCommand(WorkType.Finished))
 
     @logger.catch
