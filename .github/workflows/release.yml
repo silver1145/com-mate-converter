@@ -51,3 +51,4 @@ jobs:
       run: gh release upload --clobber ${{ steps.version.outputs.TAG_NAME }} dist/*.zip dist/*.whl
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      shell: bash
