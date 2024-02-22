@@ -42,10 +42,13 @@ jobs:
       run: pdm run pyinstaller-build
 
     - name: Copy Resources
-      run: cp -r resources/* dist/ && cp README.md dist/
+      run: |
+        mkdir dist/CMC/
+        cp dist/*.exe dist/CMC/ && cp -r resources/* dist/CMC/ && cp README.md dist/CMC/
+      shell: bash
 
     - name: Pack
-      run: Get-ChildItem -Path dist/* -Exclude *.whl, *.gz | Compress-Archive -DestinationPath dist/COM_Mate_Converter-${{ steps.version.outputs.VERSION }}.zip
+      run: Compress-Archive -Path dist/CMC -DestinationPath dist/COM_Mate_Converter-${{ steps.version.outputs.VERSION }}.zip
       shell: powershell
 
     - name: Release
