@@ -26,11 +26,11 @@ jobs:
         cache: true
 
     - name: Get Version
-        id: version
-        run: |
-          echo "VERSION=$(pdm show --version)" >> $GITHUB_OUTPUT
-          echo "TAG_VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
-          echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+      id: version
+      run: |
+        echo "VERSION=$(pdm show --version)" >> $GITHUB_OUTPUT
+        echo "TAG_VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+        echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
 
     - name: Sync
       run: pdm sync && pdm run babel-compile
@@ -49,6 +49,6 @@ jobs:
       shell: powershell
 
     - name: Release
-        run: gh release upload --clobber ${{ steps.version.outputs.TAG_NAME }} dist/*.zip dist/*.whl
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: gh release upload --clobber ${{ steps.version.outputs.TAG_NAME }} dist/*.zip dist/*.whl
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

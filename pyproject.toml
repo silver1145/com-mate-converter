@@ -64,4 +64,4 @@ babel-init = { composite = ["babel-extract", "_babel-init {args}"] }
 _babel-update = "pybabel update -D com-mate-converter -i messages.pot -d com_mate_converter/locale/"
 babel-update = { composite = ["babel-extract", "_babel-update"] }
 babel-compile = "pybabel compile -D com-mate-converter -d com_mate_converter/locale/"
-pyinstaller-build = "pyinstaller -F com_mate_converter/__main__.py"
+pyinstaller-build = "pyinstaller cmc.spec"
