@@ -70,8 +70,12 @@ class CMC_Config:
                 logger.warning(_("Failed to load ui config."))
         if CMC_Config.shader_names_file.exists():
             try:
+                shader_names = {}
                 with CMC_Config.shader_names_file.open("r", encoding="utf-8") as f:
-                    CMC_Config.shader_names = json.load(f)
+                    ori_shader_names = json.load(f)
+                    for k, v in ori_shader_names.items():
+                        shader_names[k.lower()] = v
+                CMC_Config.shader_names = shader_names
             except:
                 logger.warning(_("Failed to load shader names."))
         if CMC_Config.shader_families_file.exists():
@@ -81,7 +85,7 @@ class CMC_Config:
                     shader_families = {}
                     for k, v in families.items():
                         for shader_name in v:
-                            shader_families[shader_name] = k
+                            shader_families[shader_name.lower()] = k
                     CMC_Config.shader_families = shader_families
             except:
                 logger.warning(_("Failed to load shader families."))

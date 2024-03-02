@@ -154,7 +154,7 @@ class WorkManager:
             self.mate_pass_list.append(mate_path)
             logger.warning(_("Failed to Read Mate: {filename}").format(filename=mate_path.name))
             return
-        shader_name = CMC_Config.shader_names.get(shader_filename)
+        shader_name = CMC_Config.shader_names.get(shader_filename.lower())
         if shader_name is None:
             self.mate_pass_list.append(mate_path)
             logger.warning(_("Ignore Mate (Unknown Shader): {filename}").format(filename=mate_path.name))
