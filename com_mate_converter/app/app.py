@@ -191,14 +191,17 @@ class MainApp(App):
     @work(exclusive=True, thread=True)
     def process_mate_files(self, paths: List[str]) -> None:
         worker = get_current_worker()
+        self.work_manager.wait_for_work_thread_exit()
         self.work_manager.start_process_mate(paths, lambda: worker.is_cancelled)
 
     @work(exclusive=True, thread=True)
     def process_menu_files(self) -> None:
+        self.work_manager.wait_for_work_thread_exit()
         self.work_manager.start_process_menu()
 
     @work(exclusive=True, thread=True)
     def process_pmat_files(self) -> None:
+        self.work_manager.wait_for_work_thread_exit()
         self.work_manager.start_process_pmat()
 
     def send_log_message(self, text: str) -> None:

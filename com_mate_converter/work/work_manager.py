@@ -123,6 +123,11 @@ class WorkManager:
             for p in self.pmat_pass_list:
                 f.write(f"{p.as_posix()}\n")
 
+    def wait_for_work_thread_exit(self) -> None:
+        if self.work_pool_thread is not None:
+            while self.work_pool_thread.is_alive():
+                time.sleep(0.1)
+
     def start_process_mate(self, paths: List[str], is_cancelled: Callable[[], bool]) -> None:
         if self.work_pool_thread is not None and not self.work_pool_thread.is_stopped():
             logger.error(_("A Work Thread Pool is still running"))
@@ -204,9 +209,6 @@ class WorkManager:
         )
 
     def process_mate_finish(self) -> None:
-        if self.work_pool_thread is not None:
-            while self.work_pool_thread.is_alive():
-                time.sleep(0.1)
         logger.debug(_("Process Mate Finished"))
         if CMC_Config.config.backup and self.mate_proc_list:
             if lst := list(self.backup_dict.values()):
@@ -335,9 +337,6 @@ class WorkManager:
 
     @logger.catch
     def process_menu_finish(self) -> None:
-        if self.work_pool_thread is not None:
-            while self.work_pool_thread.is_alive():
-                time.sleep(0.1)
         logger.debug(_("Process Menu Finished"))
         if self.backup_thread is not None:
             self.backup_thread.stop()
@@ -429,9 +428,6 @@ class WorkManager:
 
     @logger.catch
     def process_pmat_finish(self) -> None:
-        if self.work_pool_thread is not None:
-            while self.work_pool_thread.is_alive():
-                time.sleep(0.1)
         logger.debug(_("Process Pmat Finished"))
         if self.backup_thread is not None:
             self.backup_thread.stop()
