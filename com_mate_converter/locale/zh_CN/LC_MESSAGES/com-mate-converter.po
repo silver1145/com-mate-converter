@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com-mate-converter 1.0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-04 15:35+0800\n"
+"POT-Creation-Date: 2024-03-04 22:58+0800\n"
 "PO-Revision-Date: 2024-02-22 14:08+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hans_CN\n"
@@ -84,7 +84,7 @@ msgstr "[#0087ff]转换结束"
 msgid "[#0087ff]Used: {seconds:.2f} s"
 msgstr "[#0087ff]耗时: {seconds:.2f} s"
 
-#: com_mate_converter/app/app.py:221
+#: com_mate_converter/app/app.py:224
 msgid ""
 "Drag into the mods folder.\n"
 "Or copy the path and press Ctrl+P to process it.\n"
@@ -160,128 +160,128 @@ msgstr "无法读取着色器名称列表"
 msgid "Failed to load shader families."
 msgstr "无法读取着色器族名"
 
-#: com_mate_converter/work/work_manager.py:128
-#: com_mate_converter/work/work_manager.py:268
-#: com_mate_converter/work/work_manager.py:358
+#: com_mate_converter/work/work_manager.py:133
+#: com_mate_converter/work/work_manager.py:272
+#: com_mate_converter/work/work_manager.py:359
 msgid "A Work Thread Pool is still running"
 msgstr "工作线程池仍在运行"
 
-#: com_mate_converter/work/work_manager.py:132
+#: com_mate_converter/work/work_manager.py:137
 msgid "Searching..."
 msgstr "搜索中..."
 
-#: com_mate_converter/work/work_manager.py:133
+#: com_mate_converter/work/work_manager.py:138
 msgid "Search for Mate..."
 msgstr "搜索Mate中..."
 
-#: com_mate_converter/work/work_manager.py:135
+#: com_mate_converter/work/work_manager.py:140
 msgid "[royal_blue1]Found {num} NPR Mate"
 msgstr "[royal_blue1]找到 {num} 个 NPR Mate"
 
-#: com_mate_converter/work/work_manager.py:141
+#: com_mate_converter/work/work_manager.py:146
 msgid "Processing Mate..."
 msgstr "处理Mate中..."
 
-#: com_mate_converter/work/work_manager.py:147
+#: com_mate_converter/work/work_manager.py:152
 msgid "Ignore Mate (no NPRMAT): {filename}"
 msgstr "忽略 Mate (非NPRMAT): {filename}"
 
-#: com_mate_converter/work/work_manager.py:155
+#: com_mate_converter/work/work_manager.py:160
 msgid "Failed to Read Mate: {filename}"
 msgstr "无法读取Mate: {filename}"
 
-#: com_mate_converter/work/work_manager.py:160
+#: com_mate_converter/work/work_manager.py:165
 msgid "Ignore Mate (Unknown Shader): {filename}"
 msgstr "忽略Mate (未知着色器): {filename}"
 
-#: com_mate_converter/work/work_manager.py:194
+#: com_mate_converter/work/work_manager.py:200
 msgid "Failed to Process Mate: {filename}"
 msgstr "无法处理Mate: {filename}"
 
-#: com_mate_converter/work/work_manager.py:209
+#: com_mate_converter/work/work_manager.py:212
 #, fuzzy
 msgid "Process Mate Finished"
 msgstr "Mate处理完成"
 
-#: com_mate_converter/work/work_manager.py:254
+#: com_mate_converter/work/work_manager.py:258
 msgid "Backuping to \"{b_name}\""
 msgstr "正在备份至 \"{b_name}\""
 
-#: com_mate_converter/work/work_manager.py:272
-#: com_mate_converter/work/work_manager.py:362
+#: com_mate_converter/work/work_manager.py:276
+#: com_mate_converter/work/work_manager.py:363
 #, fuzzy
 msgid "A Backup Thread is still running"
 msgstr "备份线程仍在运行"
 
-#: com_mate_converter/work/work_manager.py:277
+#: com_mate_converter/work/work_manager.py:281
 msgid "Search for Menu..."
 msgstr "搜索Menu中..."
 
-#: com_mate_converter/work/work_manager.py:279
+#: com_mate_converter/work/work_manager.py:283
 msgid "[royal_blue1]Found {num} Menu"
 msgstr "[royal_blue1]找到 {num} 个 Menu"
 
-#: com_mate_converter/work/work_manager.py:290
+#: com_mate_converter/work/work_manager.py:294
 msgid "Processing Menu..."
 msgstr "处理Menu中..."
 
-#: com_mate_converter/work/work_manager.py:304
+#: com_mate_converter/work/work_manager.py:308
 msgid "Failed to Read Menu: {filename}"
 msgstr "无法读取Menu: {filename}"
 
-#: com_mate_converter/work/work_manager.py:320
+#: com_mate_converter/work/work_manager.py:324
 msgid "Failed to Process Menu: {filename}"
 msgstr "无法处理Menu: {filename}"
 
-#: com_mate_converter/work/work_manager.py:339
+#: com_mate_converter/work/work_manager.py:340
 #, fuzzy
 msgid "Process Menu Finished"
 msgstr "Menu处理完成"
 
-#: com_mate_converter/work/work_manager.py:344
+#: com_mate_converter/work/work_manager.py:345
 #, fuzzy
 msgid "Backup Menu Finished"
 msgstr "Menu备份完成"
 
-#: com_mate_converter/work/work_manager.py:370
+#: com_mate_converter/work/work_manager.py:371
 msgid "Search for Pmat..."
 msgstr "搜索Pmat中..."
 
-#: com_mate_converter/work/work_manager.py:372
+#: com_mate_converter/work/work_manager.py:373
 msgid "[royal_blue1]Found {num} Pmat"
 msgstr "[royal_blue1]找到 {num} 个 Pmat"
 
-#: com_mate_converter/work/work_manager.py:381
+#: com_mate_converter/work/work_manager.py:382
 msgid "Processing Pmat..."
 msgstr "处理Pmat中..."
 
-#: com_mate_converter/work/work_manager.py:393
+#: com_mate_converter/work/work_manager.py:394
 msgid "Failed to Read Pmat: {filename}"
 msgstr "无法读取Pmat: {filename}"
 
-#: com_mate_converter/work/work_manager.py:401
+#: com_mate_converter/work/work_manager.py:402
 msgid "[white]Detect Wrong [MatName] Pmat: {filename}"
 msgstr "[white]在Pmat中检测到错误材质名: {filename}"
 
-#: com_mate_converter/work/work_manager.py:406
+#: com_mate_converter/work/work_manager.py:407
 #, fuzzy
 msgid "[white]Detect Wrong [FileName] Pmat: {filename}"
 msgstr "[white]在Pmat中检测到错误材质名: {filename}"
 
-#: com_mate_converter/work/work_manager.py:411
+#: com_mate_converter/work/work_manager.py:412
 msgid "[white]Detect Pmat with Potential Error: {filename}"
 msgstr "[white]检测到具有潜在错误的Pmat: {filename}"
 
-#: com_mate_converter/work/work_manager.py:424
+#: com_mate_converter/work/work_manager.py:425
 msgid "Failed to Process Pmat: {filename}"
 msgstr "无法处理Pmat: {filename}"
 
-#: com_mate_converter/work/work_manager.py:433
+#: com_mate_converter/work/work_manager.py:431
 #, fuzzy
 msgid "Process Pmat Finished"
 msgstr "Pmat处理完成"
 
-#: com_mate_converter/work/work_manager.py:438
+#: com_mate_converter/work/work_manager.py:436
 msgid "Backup Pmat Finished"
 msgstr "Pmat备份完成"
 
