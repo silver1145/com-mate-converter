@@ -203,6 +203,10 @@ class WorkManager:
         )
 
     def process_mate_finish(self) -> None:
+        if self.work_pool_thread is not None:
+            while self.work_pool_thread.is_alive():
+                time.sleep(0.1)
+        logger.debug(_("Process Mate Finished"))
         if CMC_Config.config.backup and self.mate_proc_list:
             if lst := list(self.backup_dict.values()):
                 backup_folder = lst[0].parent
@@ -329,11 +333,15 @@ class WorkManager:
 
     @logger.catch
     def process_menu_finish(self) -> None:
+        if self.work_pool_thread is not None:
+            while self.work_pool_thread.is_alive():
+                time.sleep(0.1)
+        logger.debug(_("Process Menu Finished"))
         if self.backup_thread is not None:
             self.backup_thread.stop()
             while self.backup_thread.is_alive():
                 time.sleep(0.1)
-            logger.debug(_("Backup Mate Finished"))
+            logger.debug(_("Backup Menu Finished"))
         self.send_message_callback(WorkCommand(WorkType.Pmat))
 
     @logger.catch
@@ -419,6 +427,10 @@ class WorkManager:
 
     @logger.catch
     def process_pmat_finish(self) -> None:
+        if self.work_pool_thread is not None:
+            while self.work_pool_thread.is_alive():
+                time.sleep(0.1)
+        logger.debug(_("Process Pmat Finished"))
         if self.backup_thread is not None:
             self.backup_thread.stop()
             while self.backup_thread.is_alive():
