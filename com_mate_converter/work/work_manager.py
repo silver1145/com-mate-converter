@@ -170,7 +170,7 @@ class WorkManager:
         new_mate_name = CMC_Config.get_new_mate_name(
             FormatVariable(
                 mate_name=mate_name,
-                shader_family=CMC_Config.shader_families.get(shader_filename) or "npr",
+                shader_family=CMC_Config.shader_families.get(shader_filename.lower()) or "npr",
                 shader_name=shader_filename,
             )
         )
