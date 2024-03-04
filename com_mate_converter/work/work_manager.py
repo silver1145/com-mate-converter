@@ -180,6 +180,7 @@ class WorkManager:
                 )
             )
             new_mate_path = mate_path.parent / new_mate_name
+            index += 1
         mate_path.rename(new_mate_path)
         mate.mate_name = new_mate_name[:-5]
         if shader_filename.startswith("_NPRToon"):
@@ -247,6 +248,7 @@ class WorkManager:
                         while backup_filename in backup_filenames or backup_filepath.exists():
                             backup_filename = f"{p.name}_{index}"
                             backup_filepath = backup_path / f"{backup_filename}.7z"
+                            index += 1
                         backup_filenames.add(backup_filename)
                         self.backup_dict[p] = backup_filepath
                         if cur_list:
