@@ -66,7 +66,7 @@ class CMC_Config:
                         CMC_Config.config.cpu_percent = cpu_percent
                     if (backup := config_dict.get("backup")) is not None:
                         CMC_Config.config.backup = backup
-            except:
+            except Exception:
                 logger.warning(_("Failed to load ui config."))
         if CMC_Config.shader_names_file.exists():
             try:
@@ -76,7 +76,7 @@ class CMC_Config:
                     for k, v in ori_shader_names.items():
                         shader_names[k.lower()] = v
                 CMC_Config.shader_names = shader_names
-            except:
+            except Exception:
                 logger.warning(_("Failed to load shader names."))
         if CMC_Config.shader_families_file.exists():
             try:
@@ -87,7 +87,7 @@ class CMC_Config:
                         for shader_name in v:
                             shader_families[shader_name.lower()] = k
                     CMC_Config.shader_families = shader_families
-            except:
+            except Exception:
                 logger.warning(_("Failed to load shader families."))
 
     @logger.catch

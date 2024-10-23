@@ -14,7 +14,7 @@ def decode_com_str(data: bytes) -> str:
 
 
 class BinaryReplace:
-    repls: Dict[str, bytes] = dict()
+    repls: Dict[str, bytes] = {}
     replace_pattern: Optional[regex.Pattern] = None
 
     @staticmethod

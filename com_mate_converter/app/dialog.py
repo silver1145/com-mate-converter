@@ -14,7 +14,7 @@ class QuitScreen(ModalScreen):
             Label(_("[b]Are you sure you want to quit?"), id="question"),
             Label(
                 _(
-                    "[bright_red]Task is still running.\nExiting can result in corrupted mod files,\nespecially when processing Menu/Pmat."
+                    "[bright_red]Task is still running.\nExiting can result in corrupted mod files,\nespecially when processing Menu/Pmat."  # noqa: E501
                 )
             ),
             Label(),
@@ -45,7 +45,7 @@ class WorkConfirmScreen(ModalScreen):
                 + "\n  ".join(self.input_paths[:3] + (["..."] if len(self.input_paths[:4]) == 4 else []))
                 + "\n\n"
                 + _(
-                    "[grey100]Option:\n  [dodger_blue1]mate_format = '{mate_format}'\n  menu_process_mode = {menu_process_mode}\n  pmat_check_mode = {pmat_check_mode}\n  cpu_percent = {cpu_percent:.0%}\n  backup = {backup}"
+                    "[grey100]Option:\n  [dodger_blue1]mate_format = '{mate_format}'\n  menu_process_mode = {menu_process_mode}\n  pmat_check_mode = {pmat_check_mode}\n  cpu_percent = {cpu_percent:.0%}\n  backup = {backup}"  # noqa: E501
                 ).format(
                     mate_format=CMC_Config.config.mate_format,
                     menu_process_mode=CMC_Config.config.menu_process_mode,

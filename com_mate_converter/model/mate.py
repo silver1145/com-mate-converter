@@ -28,7 +28,7 @@ class BaseProperty(Struct):
             else:
                 raise ValueError(f"Unknown prop type: {prop_type}")
         else:
-            return super(BaseProperty, cls).from_parsed(data)
+            return super().from_parsed(data)
 
 
 class TexProperty(BaseProperty):
@@ -138,7 +138,7 @@ class EndProperty(BaseProperty):
         prop: Any = None,
     ) -> None:
         super().__init__(prop_type=prop_type)
-        self.prop = dict()
+        self.prop = {}
 
 
 class Material(Struct):

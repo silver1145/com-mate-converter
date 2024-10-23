@@ -22,7 +22,7 @@ def build_performance_test_file(path: Path, num: int, group: int = 10, mate_per_
     mate_group_path.mkdir(exist_ok=True)
     menu_group_path.mkdir(exist_ok=True)
     for i in range(1, num + 1):
-        print(f"{i / num * 100:.2f}%", end="\r")
+        print(f"{i / num * 100:.2f}%", end="\r")  # noqa: T201
         group_index = i // group_size + 1
         if cur_group_index != group_index:
             cur_group_index = group_index

@@ -24,7 +24,7 @@ class BackupThread(Thread):
     def __init__(self, back_paths: Dict[Path, Path]) -> None:
         super().__init__()
         self.backup_queue = Queue()
-        self.back_files = dict()
+        self.back_files = {}
         for k, v in back_paths.items():
             if v.exists():
                 self.back_files[k] = py7zr.SevenZipFile(v, "a")

@@ -4,7 +4,7 @@ from tests import resouce_path
 from com_mate_converter.model import Mate
 
 
-@pytest.mark.finished
+@pytest.mark.finished()
 def test_read():
     with open(resouce_path / "example_1.mate", "rb") as f:
         Mate.parse(f.read())
@@ -14,13 +14,13 @@ def test_read():
         Mate.parse(f.read())
 
 
-@pytest.mark.finished
+@pytest.mark.finished()
 def test_write():
     mate = generate_mate()
     mate.build()
 
 
-@pytest.mark.finished
+@pytest.mark.finished()
 def test_readwrite():
     with open(resouce_path / "example_1.mate", "rb") as f:
         data = f.read()
@@ -31,7 +31,7 @@ def test_readwrite():
     assert Mate.parse(data) == mate
 
 
-@pytest.mark.finished
+@pytest.mark.finished()
 def test_readerror():
     with open(resouce_path / "example_1_corrupted.mate", "rb") as f:
         data = f.read()
@@ -51,7 +51,7 @@ def test_readerror():
         raise Exception("Mate Property Error not Caught")
 
 
-@pytest.mark.finished
+@pytest.mark.finished()
 def test_truncate():
     with open(resouce_path / "example_1_untruncated.mate", "rb") as f:
         data_untruncated = f.read()

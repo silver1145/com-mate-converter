@@ -50,6 +50,7 @@ class WorkManager:
     # Work
     finish_counter: int = 0
     finish_counter_lock: threading.Lock
+    rename_lock: threading.Lock
     backup_dict: Dict[Path, Path]
     mate_pmat_set: Set[str]
     mate_proc_list: List[Path]
@@ -66,12 +67,13 @@ class WorkManager:
         self.mate_list = []
         self.menu_list = []
         self.pmat_list = []
-        self.backup_dict = dict()
+        self.backup_dict = {}
         self.finish_counter_lock = threading.Lock()
+        self.rename_lock = threading.Lock()
         self.mate_pmat_set = set()
         self.mate_proc_list = []
         self.mate_pass_list = []
-        self.mate_name_dict = dict()
+        self.mate_name_dict = {}
         self.menu_pass_list = []
         self.pmat_change_list = []
         self.pmat_pass_list = []
@@ -155,7 +157,7 @@ class WorkManager:
         try:
             with mate_path.open("rb") as f:
                 mate = Mate.parse(f.read())
-        except:
+        except Exception:
             self.mate_pass_list.append(mate_path)
             logger.warning(_("Failed to Read Mate: {filename}").format(filename=mate_path.name))
             return
@@ -175,18 +177,19 @@ class WorkManager:
             )
         )
         new_mate_path = mate_path.parent / new_mate_name
-        index = 1
-        while new_mate_path.exists():
-            new_mate_name = CMC_Config.get_new_mate_name(
-                FormatVariable(
-                    mate_name=f"{mate_name}_{index}",
-                    shader_family=CMC_Config.shader_families.get(shader_filename) or "npr",
-                    shader_name=shader_filename,
+        with self.rename_lock:
+            index = 1
+            while new_mate_path.exists():
+                new_mate_name = CMC_Config.get_new_mate_name(
+                    FormatVariable(
+                        mate_name=f"{mate_name}_{index}",
+                        shader_family=CMC_Config.shader_families.get(shader_filename) or "npr",
+                        shader_name=shader_filename,
+                    )
                 )
-            )
-            new_mate_path = mate_path.parent / new_mate_name
-            index += 1
-        mate_path.rename(new_mate_path)
+                new_mate_path = mate_path.parent / new_mate_name
+                index += 1
+            mate_path.rename(new_mate_path)
         mate.mate_name = new_mate_name[:-5]
         if shader_filename.startswith("_NPRToon"):
             for p in mate.material.properties:
@@ -195,7 +198,7 @@ class WorkManager:
                         p.prop.name += "_ON_SSKEYWORD"
         try:
             data = mate.build()
-        except:
+        except Exception:
             self.mate_pass_list.append(mate_path)
             logger.warning(_("Failed to Process Mate: {filename}").format(filename=mate_path.name))
             return
@@ -302,7 +305,7 @@ class WorkManager:
         if CMC_Config.config.menu_process_mode == 0:
             try:
                 menu = Menu.parse(data)
-            except:
+            except Exception:
                 self.counter_add()
                 self.menu_pass_list.append(menu_path)
                 logger.warning(_("Failed to Read Menu: {filename}").format(filename=menu_path.name))
@@ -318,7 +321,7 @@ class WorkManager:
             if changed:
                 try:
                     new_data = menu.build()
-                except:
+                except Exception:
                     self.counter_add()
                     self.menu_pass_list.append(menu_path)
                     logger.warning(_("Failed to Process Menu: {filename}").format(filename=menu_path.name))
@@ -388,7 +391,7 @@ class WorkManager:
             data = f.read()
         try:
             pmat = Pmat.parse(data)
-        except:
+        except Exception:
             self.counter_add()
             self.pmat_pass_list.append(pmat_path)
             logger.warning(_("Failed to Read Pmat: {filename}").format(filename=pmat_path.name))
@@ -420,7 +423,7 @@ class WorkManager:
                 if pmat_new_filepath is not None:
                     self.pmat_fname_change_list.append(pmat_path)
                     pmat_path.rename(pmat_new_filepath)
-            except:
+            except Exception:
                 self.pmat_pass_list.append(pmat_path)
                 logger.warning(_("Failed to Process Pmat: {filename}").format(filename=pmat_path.name))
         self.counter_add()

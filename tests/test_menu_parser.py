@@ -1,22 +1,21 @@
-from construct import ConstructError
 import pytest
 from tests import resouce_path
 from com_mate_converter.model import Menu
 
 
-@pytest.mark.finished
+@pytest.mark.finished()
 def test_read():
     with open(resouce_path / "menu_example.menu", "rb") as f:
         Menu.parse(f.read())
 
 
-@pytest.mark.finished
+@pytest.mark.finished()
 def test_write():
     menu = generate_menu()
     menu.build()
 
 
-@pytest.mark.finished
+@pytest.mark.finished()
 def test_readwrite():
     with open(resouce_path / "menu_example.menu", "rb") as f:
         data = f.read()
@@ -27,19 +26,19 @@ def test_readwrite():
     assert Menu.parse(data) == menu
 
 
-@pytest.mark.finished
+@pytest.mark.finished()
 def test_readerror():
     with open(resouce_path / "menu_example_error.menu", "rb") as f:
         data = f.read()
     try:
         Menu.parse(data)
-    except:
+    except Exception:
         pass
     else:
         raise Exception("Menu Error not Caught")
 
 
-@pytest.mark.finished
+@pytest.mark.finished()
 def test_truncate():
     with open(resouce_path / "menu_example_untruncated.menu", "rb") as f:
         data_untruncated = f.read()
